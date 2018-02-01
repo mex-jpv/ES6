@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+
+const url = 'https://www.instagram.com/9gag/?__a=1';
+
+const Promise = fetch(url);
+
+Promise
+  .then (data => data.json())
+  .then (data => {
+
+    const post = data.user.media.nodes;
+    var clone={...data.user};
+
+    const {username:usern,biography:bio} = clone;
+
+    console.log(`username:${usern} biography:${bio}`);
+    const posts=[...clone.media.nodes];
+
+posts.sort(function(a, b) {
+  return (b.likes.count) - (a.likes.count)
+})
+
+  posts.forEach(function(p){
+
+console.log(`likes: ${p.likes.count} ${p.caption} comments: ${p.comments.count}`);
+
+    })
+
+})
+
+
+
+
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
